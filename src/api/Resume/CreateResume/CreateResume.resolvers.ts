@@ -12,22 +12,19 @@ const resolvers: Resolvers = {
     CreateResume: privateResolver(
       async (
         _,
-        { name, content, authorId }: CreateResumeMutationArgs,
+        { name, content }: CreateResumeMutationArgs,
         { req }
       ): Promise<CreateResumeResponse> => {
         try {
           const { user } = req;
-          if (user.id === authorId) {
+          if (user) {
             const newresume = await Resume.create({
               name,
               content,
               authorId: user.id,
               author: user
             }).save();
-            await User.update(
-              { id: user.id },
-              { lastName: "Kooo", resume: newresume }
-            );
+            await User.update({ id: user.id }, { resume: newresume });
             console.log(newresume, user.resume, user.id);
             return {
               ok: true,

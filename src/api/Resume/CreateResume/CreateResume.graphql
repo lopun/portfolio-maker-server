@@ -4,9 +4,5 @@ type CreateResumeResponse {
 }
 
 type Mutation {
-  CreateResume(
-    name: String!
-    content: String!
-    authorId: Int!
-  ): CreateResumeResponse!
+  CreateResume(name: String!, content: String!): CreateResumeResponse!
 }
