@@ -4,6 +4,7 @@ type Project {
   content: String!
   authorId: Int
   author: User!
+  likes: [Like]
   createdAt: String!
   updatedAt: String
 }

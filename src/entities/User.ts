@@ -10,10 +10,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   OneToOne,
-  OneToMany
+  OneToMany,
+  JoinColumn
 } from "typeorm";
 import Resume from "./Resume";
 import Project from "./Project";
+import Like from "./Like";
 const BCRYPT_ROUNDS = 10;
 
 @Entity()
@@ -50,10 +52,14 @@ class User extends BaseEntity {
   updatedAt: string;
 
   @OneToOne(type => Resume, resume => resume.author, { nullable: true })
+  @JoinColumn()
   resume: Resume;
 
   @OneToMany(type => Project, project => project.author, { nullable: true })
   projects: Project[];
+
+  @OneToMany(type => Like, like => like.creator)
+  likes: Like[];
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

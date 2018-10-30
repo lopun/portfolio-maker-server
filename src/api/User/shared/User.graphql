@@ -10,6 +10,7 @@ type User {
   fbId: String
   resume: Resume
   projects: [Project]
+  likes: [Like]
   createdAt: String!
   updatedAt: String
 }

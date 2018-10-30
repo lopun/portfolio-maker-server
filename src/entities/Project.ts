@@ -5,9 +5,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne
+  ManyToOne,
+  OneToMany
 } from "typeorm";
 import User from "./User";
+import Like from "./Like";
 
 @Entity()
 class Project extends BaseEntity {
@@ -25,6 +27,9 @@ class Project extends BaseEntity {
 
   @ManyToOne(type => User, user => user.projects)
   author: User;
+
+  @OneToMany(type => Like, like => like.project)
+  likes: Like[];
 
   @CreateDateColumn()
   createdAt: string;

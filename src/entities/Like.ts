@@ -2,11 +2,10 @@ import {
   BaseEntity,
   Entity,
   PrimaryGeneratedColumn,
-  OneToOne,
   CreateDateColumn,
-  JoinColumn,
   UpdateDateColumn,
-  Column
+  Column,
+  ManyToOne
 } from "typeorm";
 import User from "./User";
 import Project from "./Project";
@@ -19,15 +18,13 @@ class Like extends BaseEntity {
   @Column({ type: "text", nullable: true })
   creatorId: number;
 
-  @OneToOne(type => User)
-  @JoinColumn()
+  @ManyToOne(type => User, user => user.likes)
   creator: User;
 
   @Column({ type: "text", nullable: true })
   projectId: number;
 
-  @OneToOne(type => Project)
-  @JoinColumn()
+  @ManyToOne(type => Project, project => project.likes)
   project: Project;
 
   @CreateDateColumn()
