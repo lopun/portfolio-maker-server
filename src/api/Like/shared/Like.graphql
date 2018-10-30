@@ -3,4 +3,5 @@ type Like {
   creator: User!
   project: Project!
   createdAt: String!
+  updatedAt: String
 }

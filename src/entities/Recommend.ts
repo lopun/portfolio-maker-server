@@ -2,26 +2,29 @@ import {
   BaseEntity,
   Entity,
   PrimaryGeneratedColumn,
-  OneToOne,
   CreateDateColumn,
+  Column,
+  OneToOne,
   JoinColumn,
   UpdateDateColumn
 } from "typeorm";
 import User from "./User";
-import Project from "./Project";
 
 @Entity()
 class Like extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ type: "text" })
+  content: string;
+
   @OneToOne(type => User)
   @JoinColumn()
-  creator: User;
+  recommender: User;
 
-  @OneToOne(type => Project)
+  @OneToOne(type => User)
   @JoinColumn()
-  project: Project;
+  recommendee: User;
 
   @CreateDateColumn()
   createdAt: string;

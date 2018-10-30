@@ -3,7 +3,9 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  OneToOne
+  OneToOne,
+  CreateDateColumn,
+  UpdateDateColumn
 } from "typeorm";
 import User from "./User";
 
@@ -18,14 +20,14 @@ class Resume extends BaseEntity {
   @Column({ type: "text" })
   content: string;
 
-  @Column({ type: "text" })
-  createdAt: string;
-
-  @Column({ type: "text" })
-  updatedAt: string;
-
   @OneToOne(type => User, user => user.resume)
   author: User;
+
+  @CreateDateColumn()
+  createdAt: string;
+
+  @UpdateDateColumn()
+  updatedAt: string;
 }
 
 export default Resume;
