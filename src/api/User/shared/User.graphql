@@ -8,6 +8,7 @@ type User {
   profilePhoto: String
   fullName: String
   fbId: String
+  resume: Resume
   createdAt: String!
   updatedAt: String
 }

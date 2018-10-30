@@ -8,8 +8,10 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  OneToOne
 } from "typeorm";
+import Resume from "./Resume";
 const BCRYPT_ROUNDS = 10;
 
 @Entity()
@@ -44,6 +46,9 @@ class User extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: string;
+
+  @OneToOne(type => Resume, resume => resume.creator, { nullable: true })
+  resume: Resume;
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

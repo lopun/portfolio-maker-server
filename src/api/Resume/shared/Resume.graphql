@@ -1,0 +1,8 @@
+type Resume {
+  id: Int!
+  name: String!
+  content: String!
+  creator: User!
+  createdAt: String!
+  updatedAt: String
+}
