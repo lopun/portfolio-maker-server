@@ -10,7 +10,7 @@ import User from "./User";
 import Project from "./Project";
 
 @Entity()
-class Resume extends BaseEntity {
+class Like extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,4 +26,4 @@ class Resume extends BaseEntity {
   project: Project;
 }
 
-export default Resume;
+export default Like;

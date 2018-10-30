@@ -1,4 +1,4 @@
-type Project {
+type Like {
   id: Int!
   creator: User!
   project: Project!
