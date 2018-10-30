@@ -1,0 +1,6 @@
+type Project {
+  id: Int!
+  creator: User!
+  project: Project!
+  createdAt: String!
+}
