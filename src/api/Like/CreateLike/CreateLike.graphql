@@ -1,0 +1,8 @@
+type CreateLikeResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  CreateLike(projectId: Int!): CreateLikeResponse!
+}
