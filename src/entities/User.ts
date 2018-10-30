@@ -9,9 +9,11 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToOne
+  OneToOne,
+  OneToMany
 } from "typeorm";
 import Resume from "./Resume";
+import Project from "./Project";
 const BCRYPT_ROUNDS = 10;
 
 @Entity()
@@ -49,6 +51,9 @@ class User extends BaseEntity {
 
   @OneToOne(type => Resume, resume => resume.author, { nullable: true })
   resume: Resume;
+
+  @OneToMany(type => Project, project => project.author, { nullable: true })
+  projects: Project[];
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
