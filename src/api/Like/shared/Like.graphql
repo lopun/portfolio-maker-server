@@ -3,7 +3,7 @@ type Like {
   creator: User!
   creatorId: Int!
   project: Project!
-  projectId: Int!
+  projectId: Int
   createdAt: String!
   updatedAt: String
 }

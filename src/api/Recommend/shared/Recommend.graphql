@@ -1,8 +1,8 @@
 type Recommend {
   id: Int!
-  recommenderId: Int!
+  recommenderId: Int
   recommender: User!
-  recommendeeId: Int!
+  recommendeeId: Int
   recommendee: User!
   content: String!
   createdAt: String!

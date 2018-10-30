@@ -16,14 +16,14 @@ class Like extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   creatorId: number;
 
   @OneToOne(type => User)
   @JoinColumn()
   creator: User;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   projectId: number;
 
   @OneToOne(type => Project)

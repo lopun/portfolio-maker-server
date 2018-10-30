@@ -2,7 +2,7 @@ type Project {
   id: Int!
   name: String!
   content: String!
-  authorId: Int!
+  authorId: Int
   author: User!
   createdAt: String!
   updatedAt: String

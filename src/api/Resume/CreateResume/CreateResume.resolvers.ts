@@ -5,6 +5,7 @@ import {
   CreateResumeMutationArgs,
   CreateResumeResponse
 } from "src/types/graph";
+import User from "src/entities/User";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -15,15 +16,19 @@ const resolvers: Resolvers = {
         { req }
       ): Promise<CreateResumeResponse> => {
         try {
-          const {
-            user: { id }
-          } = req;
-          if (id === authorId) {
-            Resume.create({
+          const { user } = req;
+          if (user.id === authorId) {
+            const newresume = await Resume.create({
               name,
               content,
-              authorId
-            });
+              authorId: user.id,
+              author: user
+            }).save();
+            await User.update(
+              { id: user.id },
+              { lastName: "Kooo", resume: newresume }
+            );
+            console.log(newresume, user.resume, user.id);
             return {
               ok: true,
               error: null

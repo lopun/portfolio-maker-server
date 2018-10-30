@@ -1,0 +1,9 @@
+type GetResumeResponse {
+  ok: Boolean!
+  error: String
+  resume: Resume
+}
+
+type Query {
+  GetResume(id: Int!): GetResumeResponse!
+}

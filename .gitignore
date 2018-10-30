@@ -2,6 +2,7 @@ node_modules
 src/.env
 src/schema.graphql
 src/types/graph.d.ts
+docker-compose.yml
 dist
 .env
 .env.production
