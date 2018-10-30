@@ -18,9 +18,15 @@ class Like extends BaseEntity {
   @Column({ type: "text" })
   content: string;
 
+  @Column({ type: "text" })
+  recommenderId: number;
+
   @OneToOne(type => User)
   @JoinColumn()
   recommender: User;
+
+  @Column({ type: "text" })
+  recommendeeId: number;
 
   @OneToOne(type => User)
   @JoinColumn()

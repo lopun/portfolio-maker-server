@@ -5,7 +5,8 @@ import {
   OneToOne,
   CreateDateColumn,
   JoinColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  Column
 } from "typeorm";
 import User from "./User";
 import Project from "./Project";
@@ -15,9 +16,15 @@ class Like extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ type: "text" })
+  creatorId: number;
+
   @OneToOne(type => User)
   @JoinColumn()
   creator: User;
+
+  @Column({ type: "text" })
+  projectId: number;
 
   @OneToOne(type => Project)
   @JoinColumn()

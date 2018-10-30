@@ -20,6 +20,9 @@ class Project extends BaseEntity {
   @Column({ type: "text" })
   content: string;
 
+  @Column({ type: "text" })
+  authorId: number;
+
   @ManyToOne(type => User, user => user.projects)
   author: User;
 
