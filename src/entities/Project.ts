@@ -25,10 +25,10 @@ class Project extends BaseEntity {
   @Column({ type: "text", nullable: true })
   authorId: number;
 
-  @ManyToOne(type => User, user => user.projects)
+  @ManyToOne(type => User, user => user.projects, { eager: true })
   author: User;
 
-  @OneToMany(type => Like, like => like.project)
+  @OneToMany(type => Like, like => like.project, { nullable: true })
   likes: Like[];
 
   @CreateDateColumn()
