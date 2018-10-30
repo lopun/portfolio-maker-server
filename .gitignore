@@ -4,3 +4,4 @@ src/schema.graphql
 dist
 .env
 .env.production
+yarn.lock
