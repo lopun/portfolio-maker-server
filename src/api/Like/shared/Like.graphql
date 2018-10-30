@@ -1,5 +1,6 @@
 type Like {
   id: Int!
+  state: Int!
   creator: User!
   creatorId: Int
   project: Project!
