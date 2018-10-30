@@ -47,7 +47,7 @@ class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: string;
 
-  @OneToOne(type => Resume, resume => resume.creator, { nullable: true })
+  @OneToOne(type => Resume, resume => resume.author, { nullable: true })
   resume: Resume;
 
   get fullName(): string {

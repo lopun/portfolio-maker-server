@@ -25,7 +25,7 @@ class Resume extends BaseEntity {
   updatedAt: string;
 
   @OneToOne(type => User, user => user.resume)
-  creator: User;
+  author: User;
 }
 
 export default Resume;
