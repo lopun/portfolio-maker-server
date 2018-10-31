@@ -1,10 +1,9 @@
 type Project {
   id: Int!
   name: String!
-  content: String!
+  content: String
   authorId: Int
   author: User!
-  likes: [Like]
   createdAt: String!
   updatedAt: String
 }

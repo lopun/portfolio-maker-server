@@ -5,11 +5,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
-  OneToMany
+  ManyToOne
 } from "typeorm";
 import User from "./User";
-import Like from "./Like";
 
 @Entity()
 class Project extends BaseEntity {
@@ -19,17 +17,14 @@ class Project extends BaseEntity {
   @Column({ type: "text" })
   name: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   content: string;
 
   @Column({ type: "text", nullable: true })
   authorId: number;
 
-  @ManyToOne(type => User, user => user.projects, { eager: true })
+  @ManyToOne(type => User, user => user.projects)
   author: User;
-
-  @OneToMany(type => Like, like => like.project, { nullable: true })
-  likes: Like[];
 
   @CreateDateColumn()
   createdAt: string;

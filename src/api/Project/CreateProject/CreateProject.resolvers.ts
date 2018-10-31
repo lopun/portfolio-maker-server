@@ -23,8 +23,7 @@ const resolvers: Resolvers = {
               name,
               content,
               authorId: user.id,
-              author: user,
-              likes: []
+              author: user
             }).save();
             console.log(newProject);
             if (user.projects) {

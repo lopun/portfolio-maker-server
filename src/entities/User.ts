@@ -59,7 +59,10 @@ class User extends BaseEntity {
   projects: Project[];
 
   @OneToMany(type => Like, like => like.creator, { nullable: true })
-  likes: Like[];
+  createdLikes: Like[];
+
+  @OneToMany(type => Like, like => like.receiver, { nullable: true })
+  receivedLikes: Like[];
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

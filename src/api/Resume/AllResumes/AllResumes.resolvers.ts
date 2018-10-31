@@ -1,12 +1,13 @@
 import { Resolvers } from "src/types/resolvers";
 import Resume from "src/entities/Resume";
+import { getRepository } from "typeorm";
 import { AllResumesResponse } from "src/types/graph";
 
 const resolvers: Resolvers = {
   Query: {
     AllResumes: async (_, __, ___): Promise<AllResumesResponse> => {
       try {
-        const resumes = await Resume.find({
+        const resumes = await getRepository(Resume).find({
           relations: ["author"]
         });
         console.log(resumes);

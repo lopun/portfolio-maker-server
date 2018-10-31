@@ -17,7 +17,7 @@ class Resume extends BaseEntity {
   @Column({ type: "text" })
   name: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   content: string;
 
   @Column({ type: "text", nullable: true })

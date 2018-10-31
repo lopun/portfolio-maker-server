@@ -8,27 +8,26 @@ import {
   ManyToOne
 } from "typeorm";
 import User from "./User";
-import Project from "./Project";
 
 @Entity()
 class Like extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "tinyint", default: 0, nullable: true })
+  @Column({ type: "int", default: 0, nullable: true })
   state: number;
 
   @Column({ type: "text", nullable: true })
   creatorId: number;
 
-  @ManyToOne(type => User, user => user.likes)
+  @ManyToOne(type => User, user => user.createdLikes)
   creator: User;
 
   @Column({ type: "text", nullable: true })
-  projectId: number;
+  receiverId: number;
 
-  @ManyToOne(type => Project, project => project.likes)
-  project: Project;
+  @ManyToOne(type => User, user => user.receivedLikes)
+  receiver: User;
 
   @CreateDateColumn()
   createdAt: string;

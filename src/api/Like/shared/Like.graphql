@@ -1,10 +1,10 @@
 type Like {
   id: Int!
-  state: Int!
+  state: Int
   creator: User!
   creatorId: Int
-  project: Project!
-  projectId: Int
+  receiver: User!
+  receiverId: Int
   createdAt: String!
   updatedAt: String
 }

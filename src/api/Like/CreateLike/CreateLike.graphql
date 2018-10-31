@@ -4,5 +4,5 @@ type CreateLikeResponse {
 }
 
 type Mutation {
-  CreateLike(projectId: Int!): CreateLikeResponse!
+  CreateLike(receiverId: Int!): CreateLikeResponse!
 }

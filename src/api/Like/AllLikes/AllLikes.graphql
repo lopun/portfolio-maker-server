@@ -1,0 +1,9 @@
+type AllLikesResponse {
+  ok: Boolean!
+  error: String
+  likes: [Like]
+}
+
+type Query {
+  AllLikes: AllLikesResponse!
+}
