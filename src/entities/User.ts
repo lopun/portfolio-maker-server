@@ -16,6 +16,7 @@ import {
 import Resume from "./Resume";
 import Project from "./Project";
 import Like from "./Like";
+import Recommend from "./Recommend";
 const BCRYPT_ROUNDS = 10;
 
 @Entity()
@@ -54,6 +55,12 @@ class User extends BaseEntity {
   @OneToOne(type => Resume, resume => resume.author, { nullable: true })
   @JoinColumn()
   resume: Resume;
+
+  @OneToMany(type => Recommend, recommend => recommend.recommendee)
+  gotRecommends: Resume[];
+
+  @OneToMany(type => Recommend, recommend => recommend.recommender)
+  gaveRecommends: Resume[];
 
   @OneToMany(type => Project, project => project.author, { nullable: true })
   projects: Project[];

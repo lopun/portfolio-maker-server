@@ -7,9 +7,7 @@ const resolvers: Resolvers = {
   Query: {
     AllResumes: async (_, __, ___): Promise<AllResumesResponse> => {
       try {
-        const resumes = await getRepository(Resume).find({
-          relations: ["author"]
-        });
+        const resumes: Resume[] = await getRepository(Resume).find();
         console.log(resumes);
         return {
           ok: true,

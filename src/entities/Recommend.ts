@@ -4,9 +4,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   Column,
-  OneToOne,
-  JoinColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne
 } from "typeorm";
 import User from "./User";
 
@@ -21,15 +20,13 @@ class Like extends BaseEntity {
   @Column({ type: "text", nullable: true })
   recommenderId: number;
 
-  @OneToOne(type => User)
-  @JoinColumn()
+  @ManyToOne(type => User, user => user.gaveRecommends)
   recommender: User;
 
   @Column({ type: "text", nullable: true })
   recommendeeId: number;
 
-  @OneToOne(type => User)
-  @JoinColumn()
+  @ManyToOne(type => User, user => user.gotRecommends)
   recommendee: User;
 
   @CreateDateColumn()

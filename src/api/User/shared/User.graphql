@@ -12,6 +12,8 @@ type User {
   projects: [Project]
   createdLikes: [Like]
   receivedLikes: [Like]
+  gotRecommends: [Recommend]
+  gaveRecommends: [Recommend]
   createdAt: String!
   updatedAt: String
 }

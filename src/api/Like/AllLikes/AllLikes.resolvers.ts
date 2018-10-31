@@ -8,9 +8,7 @@ const resolvers: Resolvers = {
     AllLikes: async (): Promise<AllLikesResponse> => {
       try {
         const likes = await getRepository(Like).find();
-        if (likes) {
-          return { ok: true, error: null, likes };
-        }
+        return { ok: true, error: null, likes };
       } catch (error) {
         return {
           ok: false,
