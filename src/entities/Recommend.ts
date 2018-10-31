@@ -17,17 +17,17 @@ class Like extends BaseEntity {
   @Column({ type: "text", nullable: true })
   content: string;
 
-  @Column({ type: "text", nullable: true })
-  recommenderId: number;
+  @Column({ nullable: true })
+  creatorId: number;
 
-  @ManyToOne(type => User, user => user.gaveRecommends)
-  recommender: User;
+  @ManyToOne(type => User, user => user.recommendAsCreator)
+  creator: User;
 
-  @Column({ type: "text", nullable: true })
-  recommendeeId: number;
+  @Column({ nullable: true })
+  receiverId: number;
 
-  @ManyToOne(type => User, user => user.gotRecommends)
-  recommendee: User;
+  @ManyToOne(type => User, user => user.recommendAsReceiver)
+  receiver: User;
 
   @CreateDateColumn()
   createdAt: string;

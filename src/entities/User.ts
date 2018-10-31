@@ -37,39 +37,39 @@ class User extends BaseEntity {
   @Column({ type: "int", nullable: true })
   age: number;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: "text" })
   password: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   profilePhoto: string;
 
-  @Column({ type: "text", nullable: true })
-  fbId: string;
+  @Column({ nullable: true })
+  resumeId: number;
+
+  @OneToOne(type => Resume, resume => resume.author, { nullable: true })
+  @JoinColumn()
+  resume: Resume;
+
+  @OneToMany(type => Recommend, recommend => recommend.creator)
+  recommendAsCreator: Recommend[];
+
+  @OneToMany(type => Recommend, recommend => recommend.receiver)
+  recommendAsReceiver: Recommend[];
+
+  @OneToMany(type => Project, project => project.author, { nullable: true })
+  projects: Project[];
+
+  @OneToMany(type => Like, like => like.creator)
+  likeAsCreator: Like[];
+
+  @OneToMany(type => Like, like => like.receiver)
+  likeAsReceiver: Like[];
 
   @CreateDateColumn()
   createdAt: string;
 
   @UpdateDateColumn()
   updatedAt: string;
-
-  @OneToOne(type => Resume, resume => resume.author, { nullable: true })
-  @JoinColumn()
-  resume: Resume;
-
-  @OneToMany(type => Recommend, recommend => recommend.recommendee)
-  gotRecommends: Resume[];
-
-  @OneToMany(type => Recommend, recommend => recommend.recommender)
-  gaveRecommends: Resume[];
-
-  @OneToMany(type => Project, project => project.author, { nullable: true })
-  projects: Project[];
-
-  @OneToMany(type => Like, like => like.creator, { nullable: true })
-  createdLikes: Like[];
-
-  @OneToMany(type => Like, like => like.receiver, { nullable: true })
-  receivedLikes: Like[];
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

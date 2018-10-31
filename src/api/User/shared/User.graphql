@@ -4,16 +4,16 @@ type User {
   firstName: String!
   lastName: String!
   age: Int
-  password: String
+  password: String!
   profilePhoto: String
   fullName: String
-  fbId: String
+  resumeId: Int
   resume: Resume
+  recommendAsCreator: [Recommend]
+  recommendAsReceiver: [Recommend]
   projects: [Project]
-  createdLikes: [Like]
-  receivedLikes: [Like]
-  gotRecommends: [Recommend]
-  gaveRecommends: [Recommend]
+  likeAsCreator: [Like]
+  likeAsReceiver: [Like]
   createdAt: String!
   updatedAt: String
 }

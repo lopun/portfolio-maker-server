@@ -20,9 +20,6 @@ class Resume extends BaseEntity {
   @Column({ type: "text", nullable: true })
   content: string;
 
-  @Column({ type: "text", nullable: true })
-  authorId: number;
-
   @OneToOne(type => User, user => user.resume)
   author: User;
 

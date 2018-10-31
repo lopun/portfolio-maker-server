@@ -20,7 +20,7 @@ class Project extends BaseEntity {
   @Column({ type: "text", nullable: true })
   content: string;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ nullable: true })
   authorId: number;
 
   @ManyToOne(type => User, user => user.projects)

@@ -1,10 +1,10 @@
 type Recommend {
   id: Int!
-  recommenderId: Int
-  recommender: User!
-  recommendeeId: Int
-  recommendee: User!
   content: String!
+  creatorId: Int
+  creator: User!
+  receiverId: Int
+  receiver: User!
   createdAt: String!
   updatedAt: String
 }

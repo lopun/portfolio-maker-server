@@ -17,16 +17,16 @@ class Like extends BaseEntity {
   @Column({ type: "int", nullable: true })
   state: number;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ nullable: true })
   creatorId: number;
 
-  @ManyToOne(type => User, user => user.createdLikes)
+  @ManyToOne(type => User, user => user.likeAsCreator)
   creator: User;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ nullable: true })
   receiverId: number;
 
-  @ManyToOne(type => User, user => user.receivedLikes)
+  @ManyToOne(type => User, user => user.likeAsReceiver)
   receiver: User;
 
   @CreateDateColumn()
