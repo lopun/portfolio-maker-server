@@ -1,0 +1,8 @@
+type DeleteRecommendResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  DeleteRecommend(id: Int!): DeleteRecommendResponse!
+}
