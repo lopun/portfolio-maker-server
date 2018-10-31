@@ -10,7 +10,7 @@ const resolvers: Resolvers = {
       ___
     ): Promise<GetResumeResponse> => {
       try {
-        const resume = await Resume.findOne({ id });
+        const resume = await Resume.findOne({ id }, { relations: ["author"] });
         if (resume) {
           return {
             ok: true,

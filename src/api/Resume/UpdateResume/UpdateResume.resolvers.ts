@@ -12,19 +12,30 @@ const resolvers: Resolvers = {
     UpdateResume: privateResolver(
       async (
         _,
-        args: UpdateResumeMutationArgs
+        args: UpdateResumeMutationArgs,
+        { req: { user } }
       ): Promise<UpdateResumeResponse> => {
         try {
-          const resume = Resume.findOne({
-            id: args.id
-          });
+          const resume = await Resume.findOne(
+            {
+              id: args.id
+            },
+            { relations: ["author"] }
+          );
           if (resume) {
-            const notNull = cleanNullArgs(args);
-            await Resume.update({ id: args.id }, { ...notNull });
-            return {
-              ok: true,
-              error: null
-            };
+            if (resume.author.id === user.id) {
+              const notNull = cleanNullArgs(args);
+              await Resume.update({ id: args.id }, { ...notNull });
+              return {
+                ok: true,
+                error: null
+              };
+            } else {
+              return {
+                ok: false,
+                error: "You are not authorized!"
+              };
+            }
           } else {
             return {
               ok: false,
