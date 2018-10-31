@@ -1,0 +1,10 @@
+type Like {
+  id: Int!
+  state: String
+  creator: User!
+  creatorId: Int
+  receiver: User!
+  receiverId: Int
+  createdAt: String!
+  updatedAt: String
+}

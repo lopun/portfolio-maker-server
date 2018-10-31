@@ -1,0 +1,9 @@
+type AllResumesResponse {
+  ok: Boolean!
+  error: String
+  resumes: [Resume]
+}
+
+type Query {
+  AllResumes: AllResumesResponse!
+}

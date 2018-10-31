@@ -23,7 +23,7 @@ const resolvers: Resolvers = {
           // instance를 건들이지 않는다.(hash가 되지 않음) 고로 password는 직접 업데이트를 해줌으로써
           // @BeforeUpdate가 실행되도록! 해야함.
           user.password = notNull.password;
-          user.save();
+          await user.save();
         }
         try {
           await User.update(

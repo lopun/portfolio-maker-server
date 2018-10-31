@@ -1,0 +1,8 @@
+type UpdateRecommendResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  UpdateRecommend(id: Int!, content: String!): UpdateRecommendResponse!
+}

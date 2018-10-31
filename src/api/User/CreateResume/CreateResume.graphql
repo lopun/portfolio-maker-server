@@ -1,0 +1,8 @@
+type CreateResumeResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  CreateResume(name: String!, content: String!): CreateResumeResponse!
+}

@@ -3,24 +3,27 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  OneToOne,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne
 } from "typeorm";
 import User from "./User";
 
 @Entity()
-class Resume extends BaseEntity {
+class Project extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ type: "text" })
   name: string;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: "text" })
   content: string;
 
-  @OneToOne(type => User, user => user.resume)
+  @Column({ nullable: true })
+  authorId: number;
+
+  @ManyToOne(type => User, user => user.projects)
   author: User;
 
   @CreateDateColumn()
@@ -30,4 +33,4 @@ class Resume extends BaseEntity {
   updatedAt: string;
 }
 
-export default Resume;
+export default Project;

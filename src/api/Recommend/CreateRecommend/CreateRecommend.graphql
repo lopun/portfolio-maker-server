@@ -1,0 +1,8 @@
+type CreateRecommendResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  CreateRecommend(content: String!, receiverId: Int!): CreateRecommendResponse!
+}

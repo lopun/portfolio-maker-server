@@ -1,0 +1,8 @@
+type UpdateResumeResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  UpdateResume(id: Int!, name: String, content: String): UpdateResumeResponse!
+}

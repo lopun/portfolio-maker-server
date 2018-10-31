@@ -1,0 +1,10 @@
+type Recommend {
+  id: Int!
+  content: String!
+  creatorId: Int
+  creator: User!
+  receiverId: Int
+  receiver: User!
+  createdAt: String!
+  updatedAt: String
+}

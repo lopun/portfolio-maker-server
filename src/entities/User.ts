@@ -9,9 +9,14 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  OneToOne
+  OneToOne,
+  OneToMany,
+  JoinColumn
 } from "typeorm";
 import Resume from "./Resume";
+import Project from "./Project";
+import Like from "./Like";
+import Recommend from "./Recommend";
 const BCRYPT_ROUNDS = 10;
 
 @Entity()
@@ -32,23 +37,39 @@ class User extends BaseEntity {
   @Column({ type: "int", nullable: true })
   age: number;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: "text" })
   password: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   profilePhoto: string;
 
-  @Column({ type: "text", nullable: true })
-  fbId: string;
+  @Column({ nullable: true })
+  resumeId: number;
+
+  @OneToOne(type => Resume, resume => resume.author, { nullable: true })
+  @JoinColumn()
+  resume: Resume;
+
+  @OneToMany(type => Recommend, recommend => recommend.creator)
+  recommendAsCreator: Recommend[];
+
+  @OneToMany(type => Recommend, recommend => recommend.receiver)
+  recommendAsReceiver: Recommend[];
+
+  @OneToMany(type => Project, project => project.author, { nullable: true })
+  projects: Project[];
+
+  @OneToMany(type => Like, like => like.creator)
+  likeAsCreator: Like[];
+
+  @OneToMany(type => Like, like => like.receiver)
+  likeAsReceiver: Like[];
 
   @CreateDateColumn()
   createdAt: string;
 
   @UpdateDateColumn()
   updatedAt: string;
-
-  @OneToOne(type => Resume, resume => resume.creator, { nullable: true })
-  resume: Resume;
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
