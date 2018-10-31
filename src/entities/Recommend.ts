@@ -10,7 +10,7 @@ import {
 import User from "./User";
 
 @Entity()
-class Like extends BaseEntity {
+class Recommend extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -36,4 +36,4 @@ class Like extends BaseEntity {
   updatedAt: string;
 }
 
-export default Like;
+export default Recommend;

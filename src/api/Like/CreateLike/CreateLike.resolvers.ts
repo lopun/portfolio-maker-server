@@ -21,7 +21,7 @@ const resolvers: Resolvers = {
           if (existingLike) {
             await Like.update(
               { id: existingLike.id },
-              { state: existingLike.state === 0 ? 1 : 0 }
+              { state: existingLike.state === "LIKE" ? "DISLIKE" : "LIKE" }
             );
           } else {
             const receiver = await User.findOne({ id: receiverId });
@@ -31,29 +31,11 @@ const resolvers: Resolvers = {
                 creatorId: user.id,
                 receiverId,
                 receiver,
-                state: 1
+                state: "LIKE"
               }).save();
               console.log(like);
               console.log(user.createdLikes);
-              console.log(receiver.receivedLikes);
-              await User.update(
-                { id: user.id },
-                {
-                  createdLikes: user.createdLikes
-                    ? [...user.createdLikes, like]
-                    : [like]
-                }
-              );
-              await User.update(
-                { id: user.id },
-                {
-                  receivedLikes: receiver.receivedLikes
-                    ? [...receiver.receivedLikes, like]
-                    : [like]
-                }
-              );
               console.log(user.createdLikes);
-              console.log(receiver.receivedLikes);
             } else {
               return {
                 ok: false,

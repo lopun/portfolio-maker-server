@@ -17,7 +17,7 @@ class Project extends BaseEntity {
   @Column({ type: "text" })
   name: string;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: "text" })
   content: string;
 
   @Column({ nullable: true })

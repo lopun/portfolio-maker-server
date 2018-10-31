@@ -21,7 +21,6 @@ const resolvers: Resolvers = {
             const newresume = await Resume.create({
               name,
               content,
-              authorId: user.id,
               author: user
             }).save();
             await User.update({ id: user.id }, { resume: newresume });

@@ -14,8 +14,8 @@ class Like extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "int", nullable: true })
-  state: number;
+  @Column({ type: "text", nullable: true })
+  state: string;
 
   @Column({ nullable: true })
   creatorId: number;

@@ -5,7 +5,6 @@ import {
   CreateProjectResponse
 } from "src/types/graph";
 import Project from "src/entities/Project";
-import User from "src/entities/User";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -19,21 +18,12 @@ const resolvers: Resolvers = {
           const { user } = req;
           if (user) {
             console.log(user);
-            const newProject = await Project.create({
+            await Project.create({
               name,
               content,
               authorId: user.id,
               author: user
             }).save();
-            console.log(newProject);
-            if (user.projects) {
-              await User.update(
-                { id: user.id },
-                { projects: user.projects + [newProject] }
-              );
-            } else {
-              await User.update({ id: user.id }, { projects: [newProject] });
-            }
             return {
               ok: true,
               error: null

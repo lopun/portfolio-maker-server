@@ -1,6 +1,6 @@
 type Like {
   id: Int!
-  state: Int
+  state: String
   creator: User!
   creatorId: Int
   receiver: User!
