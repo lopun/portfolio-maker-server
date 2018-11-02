@@ -4,6 +4,7 @@ import {
   GetUserProfileQueryArgs,
   GetUserProfileResponse
 } from "src/types/graph";
+import Like from "src/entities/Like";
 
 const resolvers: Resolvers = {
   Query: {
@@ -15,17 +16,27 @@ const resolvers: Resolvers = {
         { id },
         { relations: ["resume", "projects"] }
       );
+      const likes = await Like.find({ receiverId: id, state: "LIKE" });
+      console.log(likes);
+      let likeCount;
+      if (likes) {
+        likeCount = likes.length;
+      } else {
+        likeCount = 0;
+      }
       if (user) {
         return {
           ok: true,
           error: null,
-          user
+          user,
+          likeCount
         };
       } else {
         return {
           ok: false,
           error: "User not found!",
-          user: null
+          user: null,
+          likeCount
         };
       }
     }

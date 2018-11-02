@@ -34,8 +34,22 @@ const resolvers: Resolvers = {
                 state: "LIKE"
               }).save();
               console.log(like);
-              console.log(user.createdLikes);
-              console.log(user.createdLikes);
+              await User.update(
+                { id: receiverId },
+                {
+                  likeAsReceiver: receiver.likeAsReceiver
+                    ? [...receiver.likeAsReceiver, like]
+                    : [like]
+                }
+              );
+              await User.update(
+                { id: user.id },
+                {
+                  likeAsCreator: user.likeAsCreator
+                    ? [...user.likeAsCreator, like]
+                    : [like]
+                }
+              );
             } else {
               return {
                 ok: false,
