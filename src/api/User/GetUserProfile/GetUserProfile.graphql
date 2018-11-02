@@ -3,6 +3,7 @@ type GetUserProfileResponse {
   error: String
   user: User
   likeCount: Int!
+  myLike: Like
 }
 
 type Query {
