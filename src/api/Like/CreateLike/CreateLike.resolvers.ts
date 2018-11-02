@@ -18,11 +18,13 @@ const resolvers: Resolvers = {
             creatorId: user.id,
             receiverId
           });
+          let likeState;
           if (existingLike) {
             await Like.update(
               { id: existingLike.id },
               { state: existingLike.state === "LIKE" ? "DISLIKE" : "LIKE" }
             );
+            likeState = existingLike.state === "LIKE" ? false : true;
           } else {
             const receiver = await User.findOne({ id: receiverId });
             if (receiver) {
@@ -33,24 +35,41 @@ const resolvers: Resolvers = {
                 receiver,
                 state: "LIKE"
               }).save();
-              console.log(like);
-              console.log(user.createdLikes);
-              console.log(user.createdLikes);
+              likeState = true;
+              await User.update(
+                { id: receiverId },
+                {
+                  likeAsReceiver: receiver.likeAsReceiver
+                    ? [...receiver.likeAsReceiver, like]
+                    : [like]
+                }
+              );
+              await User.update(
+                { id: user.id },
+                {
+                  likeAsCreator: user.likeAsCreator
+                    ? [...user.likeAsCreator, like]
+                    : [like]
+                }
+              );
             } else {
               return {
                 ok: false,
-                error: "User does not exist."
+                error: "User does not exist.",
+                likeState: false
               };
             }
           }
           return {
             ok: true,
-            error: null
+            error: null,
+            likeState
           };
         } catch (error) {
           return {
             ok: false,
-            error: error.message
+            error: error.message,
+            likeState: false
           };
         }
       }

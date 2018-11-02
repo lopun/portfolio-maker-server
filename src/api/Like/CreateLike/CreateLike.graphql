@@ -1,6 +1,7 @@
 type CreateLikeResponse {
   ok: Boolean!
   error: String
+  likeState: Boolean!
 }
 
 type Mutation {

@@ -2,6 +2,7 @@ type GetMyProfileResponse {
   ok: Boolean!
   error: String
   user: User
+  likeCount: Int
 }
 
 type Query {

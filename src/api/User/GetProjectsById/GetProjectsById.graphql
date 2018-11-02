@@ -1,0 +1,9 @@
+type GetProjectsByIdResponse {
+  ok: Boolean!
+  error: String
+  projects: [Project]
+}
+
+type Query {
+  GetProjectsById: GetProjectsByIdResponse!
+}
