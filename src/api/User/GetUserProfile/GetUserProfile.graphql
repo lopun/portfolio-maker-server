@@ -4,6 +4,7 @@ type GetUserProfileResponse {
   user: User
   likeCount: Int!
   myLike: Like
+  existingRecommend: Recommend
 }
 
 type Query {

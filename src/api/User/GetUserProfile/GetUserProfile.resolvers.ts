@@ -5,6 +5,7 @@ import {
   GetUserProfileResponse
 } from "src/types/graph";
 import Like from "src/entities/Like";
+import Recommend from "src/entities/Recommend";
 
 const resolvers: Resolvers = {
   Query: {
@@ -15,12 +16,17 @@ const resolvers: Resolvers = {
     ): Promise<GetUserProfileResponse> => {
       const user = await User.findOne(
         { id },
-        { relations: ["resume", "projects"] }
+        { relations: ["resume", "projects", "recommendAsReceiver"] }
       );
       const likes = await Like.find({ receiverId: id, state: "LIKE" });
       let myLike;
+      let existingRecommend;
       if (req.user) {
         myLike = await Like.findOne({ creatorId: req.user.id, receiverId: id });
+        existingRecommend = await Recommend.findOne({
+          creatorId: req.user.id,
+          receiverId: id
+        });
       }
       console.log(likes);
       let likeCount;
@@ -35,7 +41,8 @@ const resolvers: Resolvers = {
           error: null,
           user,
           likeCount,
-          myLike
+          myLike,
+          existingRecommend
         };
       } else {
         return {
@@ -43,7 +50,8 @@ const resolvers: Resolvers = {
           error: "User not found!",
           user: null,
           likeCount,
-          myLike: null
+          myLike: null,
+          existingRecommend
         };
       }
     }
