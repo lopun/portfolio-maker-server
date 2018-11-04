@@ -1,0 +1,9 @@
+type SearchByStackResponse {
+  ok: Boolean!
+  error: String
+  projects: [Project]
+}
+
+type Query {
+  SearchByStack(input: String!): SearchByStackResponse!
+}

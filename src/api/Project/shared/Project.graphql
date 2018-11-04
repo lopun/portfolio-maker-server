@@ -2,6 +2,7 @@ type Project {
   id: Int!
   name: String!
   content: String
+  stack: [String]
   authorId: Int
   author: User!
   createdAt: String!

@@ -4,5 +4,9 @@ type CreateProjectResponse {
 }
 
 type Mutation {
-  CreateProject(name: String!, content: String!): CreateProjectResponse!
+  CreateProject(
+    name: String!
+    content: String!
+    stack: [String]
+  ): CreateProjectResponse!
 }
