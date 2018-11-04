@@ -1,0 +1,9 @@
+type GetRecommendsByIdResponse {
+  ok: Boolean!
+  error: String
+  recommends: [Recommend]
+}
+
+type Query {
+  GetRecommendsById(id: Int!): GetRecommendsByIdResponse!
+}
