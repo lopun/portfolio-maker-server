@@ -18,17 +18,22 @@ const resolvers: Resolvers = {
         try {
           const receiver = await User.findOne({ id: receiverId });
           if (receiver) {
-            await Recommend.create({
+            const createdRecommend = await Recommend.create({
               content,
               creator: user,
               creatorId: user.id,
               receiverId,
               receiver
             }).save();
-            return {
-              ok: true,
-              error: null
-            };
+            await User.update(
+              { id: receiverId },
+              {
+                recommendAsReceiver: receiver.recommendAsReceiver
+                  ? [...receiver.recommendAsReceiver, createdRecommend]
+                  : [createdRecommend]
+              }
+            );
+            return { ok: true, error: null };
           } else {
             return {
               ok: false,

@@ -10,17 +10,9 @@ const resolvers: Resolvers = {
     ): Promise<GetRecommendResponse> => {
       const recommend = await Recommend.findOne({ id });
       if (recommend) {
-        return {
-          ok: true,
-          error: null,
-          recommend
-        };
+        return { ok: true, error: null, recommend };
       } else {
-        return {
-          ok: false,
-          error: "Recommend Not Found",
-          recommend: null
-        };
+        return { ok: false, error: "Recommend Not Found", recommend: null };
       }
     }
   }
