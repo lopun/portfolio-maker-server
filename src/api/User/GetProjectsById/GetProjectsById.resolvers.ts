@@ -2,6 +2,7 @@ import { Resolvers } from "src/types/resolvers";
 import { GetProjectsByIdResponse } from "src/types/graph";
 import Project from "src/entities/Project";
 import privateResolver from "src/utils/privateResolver";
+import { getRepository } from "typeorm";
 
 const resolvers: Resolvers = {
   Query: {
@@ -9,7 +10,10 @@ const resolvers: Resolvers = {
       async (_, __, { req }): Promise<GetProjectsByIdResponse> => {
         try {
           const { user } = req;
-          const projects = await Project.find({ authorId: user.id });
+          const projects = await getRepository(Project).find({
+            where: { authorId: user.id },
+            relations: ["author"]
+          });
           if (projects) {
             return {
               ok: true,
