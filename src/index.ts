@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 // 모든 설정 전에 호출해야한다.
-dotenv.config();
+dotenv.config({
+  path: process.env.NODE_PRODUCTION === "true" ? ".env.production" : ".env"
+});
 
 import app from "./app";
 import { createConnection } from "typeorm";

@@ -6,7 +6,7 @@ const defaultConnectOptions: ConnectionOptions = {
   synchronize: true,
   // 모든 로깅을 보게된다.
   logging: true,
-  entities: ["entities/*.*"],
+  entities: [__dirname + "/entities/*.*"],
   host: process.env.DB_ENDPOINT || "localhost",
   port: parseInt(process.env.DB_PORT || "3306"),
   username: process.env.DB_USERNAME || "root",

@@ -12,7 +12,7 @@ const resolvers: Resolvers = {
     CreateProject: privateResolver(
       async (
         _,
-        { name, content }: CreateProjectMutationArgs,
+        { name, content, stack }: CreateProjectMutationArgs,
         { req }
       ): Promise<CreateProjectResponse> => {
         try {
@@ -23,7 +23,8 @@ const resolvers: Resolvers = {
               name,
               content,
               authorId: user.id,
-              author: user
+              author: user,
+              stack: stack ? stack : undefined
             }).save();
             await User.update(
               { id: user.id },

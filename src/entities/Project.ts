@@ -20,6 +20,9 @@ class Project extends BaseEntity {
   @Column({ type: "text" })
   content: string;
 
+  @Column({ type: "simple-array" })
+  stack: string[];
+
   @Column({ nullable: true })
   authorId: number;
 
