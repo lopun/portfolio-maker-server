@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "dist",
+    "baseUrl": "./src/",
+    "outDir": "./dist/src",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es6", "dom", "esnext.asynciterable"],
@@ -9,6 +9,9 @@
     "allowJs": true,
     "moduleResolution": "node",
     "rootDir": "src",
+    "paths": {
+      "src/*": ["*"]
+    },
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -21,6 +24,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
+  "include": ["./src/**/*"],
   "exclude": [
     "node_modules",
     "build",

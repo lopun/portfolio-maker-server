@@ -19,10 +19,10 @@
     "dev": "cd src && nodemon --exec ts-node -r tsconfig-paths/register index.ts -e ts,graphql",
     "pretypes": "gql-merge --out-file ./src/schema.graphql ./src/api/**/*.graphql",
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts",
-    "prebuild": "rm -rf dist",
+    "prebuild": "rm -rf dist && yarn types",
     "build": "tsc",
-    "postbuild": "cd src && npx copy ./api/**/*.graphql ../dist/api",
-    "start": "node dist/index.js"
+    "postbuild": "npx copy ./src/api/**/*.graphql ./dist/src/api",
+    "start": "cross-env NODE_PATH=dist/ NODE_PRODUCTION=true node dist/src/index.js"
   },
   "dependencies": {
     "apollo-engine": "^1.1.2",
@@ -33,6 +33,7 @@
     "class-validator": "^0.9.1",
     "copy": "^0.3.2",
     "cors": "^2.8.4",
+    "cross-env": "^5.2.0",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "gql-merge": "^0.0.6",
@@ -55,7 +56,7 @@
     "typescript": "^3.1.3"
   },
   "now": {
-    "name": "luber-server",
+    "name": "portfolio-maker-server",
     "dotenv": ".env.production"
   }
 }
