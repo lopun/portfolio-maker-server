@@ -8,3 +8,5 @@ dist
 .env
 .env.production
 yarn.lock
+debug.log
+ghostdriver.log
