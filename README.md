@@ -2,7 +2,7 @@
 
 Portfolio Maker made by #GraphQL #Typescript #TypeORM #Apollo
 
-- [Demo Page](https://portfolio-maker-server-aanmtfngos.now.sh/playground)
+- [Demo Page](https://portfolio-maker-server.lopun.org/playground)
 
 ## Scripts
 
