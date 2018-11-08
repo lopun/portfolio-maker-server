@@ -30,7 +30,7 @@ class App {
     this.app.express.get(
       "/croller/:name",
       async ({ params: { name } }, res) => {
-        const pyProgress = spawn("python", ["./../croller.py", name]);
+        const pyProgress = spawn("python", ["croller.py", name]);
         await pyProgress.stdout.on("data", function(data) {
           const result = data.toString().replace(/\'/g, '"');
           res.send(result);
