@@ -22,7 +22,7 @@
     "prebuild": "rm -rf dist && yarn types",
     "build": "tsc",
     "postbuild": "npx copy ./src/api/**/*.graphql ./dist/src/api",
-    "start": "cross-env NODE_PATH=dist/ NODE_PRODUCTION=true forever start dist/src/index.js"
+    "start": "cross-env NODE_PATH=dist/ NODE_PRODUCTION=true forever --minUptime 1000 --spinSleepTime 1000 start dist/src/index.js"
   },
   "dependencies": {
     "apollo-engine": "^1.1.2",
