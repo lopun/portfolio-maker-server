@@ -1,0 +1,13 @@
+type UpdateProjectResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  UpdateProject(
+    id: Int!
+    name: String!
+    content: String!
+    stack: [String]
+  ): UpdateProjectResponse!
+}
