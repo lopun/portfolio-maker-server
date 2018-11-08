@@ -6,6 +6,8 @@ import schema from "./schema";
 import decodeJWT from "./utils/decodeJWT";
 import { NextFunction, Response } from "express";
 import { spawn } from "child_process";
+import os from "os";
+const pythonConfig = os.platform() === "linux" ? "python3" : "python";
 
 class App {
   public app: GraphQLServer;
@@ -30,7 +32,7 @@ class App {
     this.app.express.get(
       "/croller/:name",
       async ({ params: { name } }, res) => {
-        const pyProgress = spawn("python", ["./../croller.py", name]);
+        const pyProgress = spawn(pythonConfig, ["./../croller.py", name]);
         await pyProgress.stdout.on("data", function(data) {
           const result = data.toString().replace(/\'/g, '"');
           res.send(result);

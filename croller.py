@@ -1,9 +1,13 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
+import platform
 import os
 import sys
 
-driver = webdriver.PhantomJS(os.path.dirname(os.path.abspath(__file__)) + "/src/phantomjs/bin/phantomjs")
+if ("Windows" in platform.platform()):
+  driver = webdriver.PhantomJS(os.path.dirname(os.path.abspath(__file__)) + "/src/phantomjs/bin/phantomjs")
+else:
+  driver = webdriver.PhantomJS()
 
 driver.implicitly_wait(3)
 

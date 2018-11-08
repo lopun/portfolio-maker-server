@@ -3,8 +3,6 @@ import dotenv from "dotenv";
 dotenv.config({
   path: process.env.NODE_ENV === "development" ? ".env" : ".env.production"
 });
-console.log(process.env.NODE_ENV);
-console.log(process.env);
 
 import app from "./app";
 import { createConnection } from "typeorm";
