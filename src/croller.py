@@ -5,7 +5,7 @@ import os
 import sys
 
 if ("Windows" in platform.platform()):
-  driver = webdriver.PhantomJS(os.path.dirname(os.path.abspath(__file__)) + "/src/phantomjs/bin/phantomjs")
+  driver = webdriver.PhantomJS(os.path.dirname(os.path.abspath(__file__)) + "/phantomjs/bin/phantomjs")
 else:
   driver = webdriver.PhantomJS()
 
