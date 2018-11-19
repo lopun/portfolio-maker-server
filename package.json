@@ -12,7 +12,8 @@
     "@types/jsonwebtoken": "^7.2.8",
     "@types/mailgun-js": "^0.16.1",
     "@types/node": "^10.12.0",
-    "@types/twilio": "^0.0.10"
+    "@types/twilio": "^0.0.10",
+    "@types/puppeteer": "^1.10.0"
   },
   "scripts": {
     "predev": "yarn run types",
@@ -50,6 +51,7 @@
     "mysql": "^2.16.0",
     "nodemon": "^1.18.4",
     "pg": "^7.5.0",
+    "puppeteer": "^1.10.0",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.6.0",
     "tslint-config-prettier": "^1.15.0",

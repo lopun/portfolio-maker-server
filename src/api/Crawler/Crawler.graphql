@@ -1,0 +1,8 @@
+type CrawlerResponse {
+  ok: Boolean!
+  error: String
+}
+
+type Mutation {
+  Crawler(username: String!): CrawlerResponse!
+}
