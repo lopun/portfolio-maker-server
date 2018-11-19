@@ -6,3 +6,7 @@ type CrawlerResponse {
 type Mutation {
   Crawler(username: String!): CrawlerResponse!
 }
+
+type Query {
+  Query: String
+}
