@@ -22,7 +22,7 @@
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts",
     "prebuild": "rm -rf dist && yarn types",
     "build": "tsc",
-    "postbuild": "npx copy ./src/api/**/*.graphql ./dist/src/api && npx copy ./src/croller.py ./dist/src",
+    "postbuild": "npx copy ./src/api/**/*.graphql ./dist/src/api",
     "prestart": "yarn build",
     "start": "cross-env NODE_PATH=dist/ forever start dist/src/index.js"
   },
